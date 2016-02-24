@@ -1,0 +1,41 @@
+// bower:scss
+// endbower
+
+
+.widgets-container {
+    display:flex;
+    flex-flow: row wrap;
+    overflow-y: auto;
+    align-content: flex-start;
+    flex-grow: 1;
+    background: #000;
+}
+
+widget {
+    width: 45vh;
+    height: 45vh;
+    margin:10px 0px 0px 10px;
+    background: #2A2A2A;
+    display: flex;
+    flex-direction: column;
+
+    header {
+        color: #c2c9cb;
+        font-size: 13px;
+        font-weight: 400;
+        margin-bottom: 0;
+        line-height: 17px;
+        padding: 11px 22px 11px 13px;
+    }
+    div.content {
+        flex-grow: 1;
+        display: flex;
+        color: #eee;
+        div.number {
+            flex: 1.5;
+            padding: 0 16px;
+            white-space: nowrap;
+            font-size: 60px;
+        }
+    }
+}
