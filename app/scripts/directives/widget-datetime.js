@@ -8,6 +8,7 @@ angular.module('PhmWebApp').directive('widgetDatetime', function() {
                 '<header>Current date and time</header>',
                 '<div class="content">',
                     '<div class="number" ng-bind="vm.date | date : \'shortTime\'"></div>',
+                    '<div class="desc" ng-bind="vm.date | date : \'fullDate\'"></div>',
                 '</div>',
             '</widget>'
         ].join(''),

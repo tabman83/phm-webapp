@@ -34,11 +34,11 @@
     </head>
     <body ng-app="PhmWebApp" layout="row" ng-controller="AppCtrl as app" ng-cloak>
 
-        //https://demo.geckoboard.com/dashboards/981BC753AD17B969?_ga=1.106875523.1688862814.1456327598
+        <!--https://demo.geckoboard.com/dashboards/981BC753AD17B969?_ga=1.106875523.1688862814.1456327598 -->
 
         <div class="widgets-container">
             <widget-datetime></widget-datetime>
-            <widget-datetime></widget-datetime>
+            <widget-sensors location="'living room'"></widget-sensors>
             <widget-datetime></widget-datetime>
             <widget-datetime></widget-datetime>
             <widget-datetime></widget-datetime>
@@ -62,6 +62,7 @@
         <script src="scripts/main.js"></script>
         <script src="scripts/controllers/app.js"></script>
         <script src="scripts/directives/widget-datetime.js"></script>
+        <script src="scripts/directives/widget-sensors.js"></script>
         <!-- endbuild -->
     </body>
 </html>
