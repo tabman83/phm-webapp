@@ -3,7 +3,8 @@ Web application for personal-heating-manager
 
 ## Installation
 ```
-npm install
+$ npm install
+$ bower install
 ```
 
 ## Commands
