@@ -1,4 +1,4 @@
-angular.module('PhmWebApp', ['ngMaterial', 'ngRoute']).config(function($routeProvider) {
+angular.module('PhmWebApp', ['ngMaterial', 'ngRoute', 'rt.debounce']).config(function($routeProvider) {
 	'use strict';
 
 	$routeProvider.when('/Dashboard', {

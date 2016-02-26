@@ -1,16 +1,26 @@
 {
-  "name": "phm-webapp",
-  "private": true,
-  "dependencies": {
-    "angular-material": "^1.0.5",
-    "angular-route": "^1.5.0",
-    "highcharts": "^4.2.3"
-  },
-  "devDependencies": {
-    "chai": "^3.5.0",
-    "mocha": "^2.4.5"
-  },
-  "resolutions": {
-    "angular": "^1.4.8"
-  }
+    "name": "phm-webapp",
+    "private": true,
+    "dependencies": {
+        "angular-material": "^1.0.5",
+        "angular-route": "^1.5.0",
+        "highcharts": "^4.2.3",
+        "angular-debounce": "^1.0.3"
+    },
+    "devDependencies": {
+        "chai": "^3.5.0",
+        "mocha": "^2.4.5"
+    },
+    "resolutions": {
+        "angular": "^1.4.8"
+    },
+    "overrides": {
+        "highcharts": {
+            "main": [
+                "highcharts.js",
+                "highcharts-more.js",
+                "modules/solid-gauge.js"
+            ]
+        }
+    }
 }

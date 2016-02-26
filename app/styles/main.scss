@@ -31,8 +31,9 @@ widget {
     padding-bottom: 11px;
 
     &.x2 {
-        border: solid 1px red;
         width: 90vh;
+        padding-left: 5px;
+        padding-right: 5px;
     }
 
     header {
