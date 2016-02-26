@@ -11,6 +11,16 @@
     background: #000;
 }
 
+.flex {
+    display: flex;
+}
+.flex-column {
+    flex-direction: column;
+}
+.flex-grow-1 {
+    flex-grow: 1;
+}
+
 widget {
     width: 45vh;
     height: 45vh;
@@ -19,6 +29,11 @@ widget {
     display: flex;
     flex-direction: column;
     padding-bottom: 11px;
+
+    &.x2 {
+        border: solid 1px red;
+        width: 90vh;
+    }
 
     header {
         color: #c2c9cb;
@@ -33,6 +48,10 @@ widget {
         display: flex;
         flex-direction: column;
         color: #eee;
+        .highcharts-container{
+            width: 100% !important;
+            height: 100% !important;
+        }
         div.number {
             flex: 1.5;
             padding: 0 16px;
@@ -44,5 +63,12 @@ widget {
             white-space: wrap;
             font-size: 2.99vh;
         }
+    }
+    div.chart.number {
+        flex: 2;
+        padding: 0;
+        color: #eee;
+        font-size: 9vh;
+        text-align: center;
     }
 }
