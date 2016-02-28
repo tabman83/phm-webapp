@@ -32,7 +32,7 @@
         </style>
 
     </head>
-    <body ng-app="PhmWebApp" layout="row" ng-controller="AppCtrl as app" ng-cloak>
+    <body layout="row" ng-controller="AppCtrl as app" ng-cloak>
 
         <!--https://demo.geckoboard.com/dashboards/981BC753AD17B969?_ga=1.106875523.1688862814.1456327598 -->
 
@@ -59,12 +59,18 @@
         <script src="/bower_components/highcharts/highcharts-more.js"></script>
         <script src="/bower_components/highcharts/modules/solid-gauge.js"></script>
         <script src="/bower_components/angular-debounce/dist/angular-debounce.js"></script>
+        <script src="/bower_components/long/dist/long.js"></script>
+        <script src="/bower_components/bytebuffer/dist/ByteBufferAB.js"></script>
+        <script src="/bower_components/protobuf/dist/protobuf.js"></script>
         <!-- endbower -->
         <!-- endbuild -->
+
+        <script src="http://digitalocean.thenino.net:3000/mqtt.js"></script>
 
         <!-- build:js scripts/main.js -->
         <script src="scripts/main.js"></script>
         <script src="scripts/controllers/app.js"></script>
+        <script src="scripts/providers/data-service.js"></script>
         <script src="scripts/directives/widget-datetime.js"></script>
         <script src="scripts/directives/widget-sensors.js"></script>
         <!-- endbuild -->

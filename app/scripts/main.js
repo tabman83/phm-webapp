@@ -1,4 +1,5 @@
-angular.module('PhmWebApp', ['ngMaterial', 'ngRoute', 'rt.debounce']).config(function($routeProvider) {
+angular.module('PhmWebApp', ['ngMaterial', 'ngRoute', 'rt.debounce']).run(function(DataService) {
+}).config(function($routeProvider) {
 	'use strict';
 
 	$routeProvider.when('/Dashboard', {
@@ -27,4 +28,32 @@ angular.module('PhmWebApp', ['ngMaterial', 'ngRoute', 'rt.debounce']).config(fun
 		redirectTo: '/Dashboard'
 	});
 
+});
+
+angular.element(document).ready(function () {
+    'use strict';
+
+	function reqListener () {
+		var settingsData = JSON.parse(this.responseText);
+		angular.module('PhmWebApp').constant('settings', settingsData);
+        angular.bootstrap(document, ['PhmWebApp']);
+	}
+
+	var req = new XMLHttpRequest();
+	req.addEventListener('load', reqListener);
+	req.open('GET', 'settings.json');
+	req.send();
+/*
+    window.jQuery.get('settings.json').success(function (data) {
+        angular.module('bis.app.mstrackweb2016').constant('settings', data);
+        angular.bootstrap(document, ['bis.app.mstrackweb2016']);
+    }).error(function(error) {
+        var msg = 'An error occurred while loading the configuration file. ';
+        if( error.status === 0 ) {
+            msg += 'Host is unreachable.';
+        } else {
+            msg += error.responseText;
+        }
+        console.error(msg);
+    });*/
 });
