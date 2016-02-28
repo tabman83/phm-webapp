@@ -5,15 +5,20 @@ angular.module('PhmWebApp').directive('widgetSensors', function($window, $timeou
         controllerAs: 'vm',
         template: [
             '<widget class="x2">',
-                '<header ng-bind="vm.location"></header>',
+                '<header>',
+                    '<span class="pull-left" ng-bind="vm.location"></span>',
+                    '<span class="pull-right" am-time-ago="vm.timestamp"></span>',
+                '</header>',
                 '<div class="flex">',
                     '<div class="flex flex-column flex-grow-1">',
                         '<div class="content chart chartTemperature"></div>',
-                        '<div class="chart number"><span ng-bind="vm.temperatureValue | number : 1"></span><span ng-bind="::vm.temperatureMeasureUnit"></span></div>',
+                        '<div class="chart number" ng-if="!vm.temperatureValue">--</div>',
+                        '<div class="chart number" ng-if="vm.temperatureValue"><span ng-bind="vm.temperatureValue | number : 1"></span><span ng-bind="::vm.temperatureMeasureUnit"></span></div>',
                     '</div>',
                     '<div class="flex flex-column flex-grow-1">',
                         '<div class="content chart chartHumidity"></div>',
-                        '<div class="chart number"><span ng-bind="vm.humidityValue | number : 1"></span><span ng-bind="::vm.humidityMeasureUnit"></span></div>',
+                        '<div class="chart number" ng-if="!vm.humidityValue">--</div>',
+                        '<div class="chart number" ng-if="vm.humidityValue"><span ng-bind="vm.humidityValue | number : 1"></span><span ng-bind="::vm.humidityMeasureUnit"></span></div>',
                     '</div>',
                 '</div>',
             '</widget>'
@@ -22,23 +27,31 @@ angular.module('PhmWebApp').directive('widgetSensors', function($window, $timeou
             location: '<',
         },
         replace: true,
-        controller: function($interval, $scope) {
+        controller: function($rootScope, $scope) {
             var vm = this;
-            vm.temperatureValue = '--';
-            vm.humidityValue = '--';
+            vm.temperatureValue = null;
+            vm.humidityValue = null;
             vm.location = $scope.location;
             vm.temperatureMeasureUnit = '°';
             vm.humidityMeasureUnit = '%';
+            vm.timestamp = null;
 
-            var promise = $interval(function() {
-                vm.temperatureValue = 40*Math.random();
-                vm.humidityValue = 90*Math.random();
-                $scope.tPoint.update(vm.temperatureValue);
-                $scope.hPoint.update(vm.humidityValue);
-            }, 1000);
+            var sensorEvent = $rootScope.$on('sensor', function(event, message) {
+                if(message.location === $scope.location) {
+                    $scope.$applyAsync(function() {
+                        vm.timestamp = message.timestamp.toNumber();
+
+                        vm.temperatureValue = message.temperature;
+                        $scope.tPoint.update(message.temperature);
+
+                        vm.humidityValue = message.humidity;
+                        $scope.hPoint.update(message.humidity);
+                    });
+                }
+            });
 
             $scope.$on('$destroy', function() {
-                $interval.cancel(promise);
+                sensorEvent();
             });
         },
         link: function(scope, element, attrs) {

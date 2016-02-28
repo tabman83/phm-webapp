@@ -10,7 +10,12 @@
     flex-grow: 1;
     background: #000;
 }
-
+.pull-left {
+    float: left;
+}
+.pull-right {
+    float: right;
+}
 .flex {
     display: flex;
 }

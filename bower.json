@@ -6,14 +6,15 @@
     "angular-route": "^1.5.0",
     "highcharts": "^4.2.3",
     "angular-debounce": "^1.0.3",
-    "protobuf": "^5.0.1"
+    "protobuf": "^5.0.1",
+    "angular-moment": "^0.10.3"
   },
   "devDependencies": {
     "chai": "^3.5.0",
     "mocha": "^2.4.5"
   },
   "resolutions": {
-    "angular": "^1.4.8"
+    "angular": "1.5.0"
   },
   "overrides": {
     "highcharts": {

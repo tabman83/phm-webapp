@@ -1,4 +1,4 @@
-angular.module('PhmWebApp', ['ngMaterial', 'ngRoute', 'rt.debounce']).run(function(DataService) {
+angular.module('PhmWebApp', ['ngMaterial', 'ngRoute', 'angularMoment', 'rt.debounce']).run(function(DataService) {
 }).config(function($routeProvider) {
 	'use strict';
 

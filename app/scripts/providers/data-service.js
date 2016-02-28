@@ -1,7 +1,9 @@
-angular.module('PhmWebApp').provider('DataService', function (settings) {
+angular.module('PhmWebApp').provider('DataService', function () {
     'use strict';
 
-    this.$get = function($http) {
+    var sensorProtocolDefinitionUrl = 'https://raw.githubusercontent.com/tabman83/phm-messages/master/sensor-message.proto';
+
+    this.$get = function($http, $rootScope, settings) {
 
         function DataService() {
             var self = this;
@@ -9,7 +11,7 @@ angular.module('PhmWebApp').provider('DataService', function (settings) {
             var mqttClient = null;
 
             var initialize = function() {
-                $http.get('https://raw.githubusercontent.com/tabman83/phm-messages/master/sensor-message.proto').then(function(result) {
+                $http.get(sensorProtocolDefinitionUrl).then(function(result) {
                     var builder = dcodeIO.ProtoBuf.loadProto(result.data);
                     if(!builder) {
                         console.error('Error while decoding protobuf definition file.');
@@ -19,8 +21,8 @@ angular.module('PhmWebApp').provider('DataService', function (settings) {
                         if(typeof mqtt === 'undefined') {
                             console.error('Cannot load \'mqtt.js\'. Cannot contact MQTT server.');
                         } else {
-                            console.log('connection');
-                            var mqttUrl = 'mqtt://' + settings.MQTT_HOSTNAME + ':' + MQTT_PORT;
+                            console.log('Connection to MQTT broker established.');
+                            var mqttUrl = 'mqtt://' + settings.MQTT_HOSTNAME + ':' + settings.MQTT_PORT;
                             mqttClient = mqtt.connect(mqttUrl, {
                                 username: settings.MQTT_USERNAME,
                                 password: settings.MQTT_PASSWORD
@@ -29,8 +31,9 @@ angular.module('PhmWebApp').provider('DataService', function (settings) {
                             mqttClient.on('message', function(topic, payload) {
                                 if(topic === 'phm/sensors') {
                                     var sensorMessage = SensorMessage.decode(payload);
-                                    var date = new Date(+sensorMessage.timestamp.toString());
-                                    console.log(date, sensorMessage);
+                                    $rootScope.$emit('sensor', sensorMessage);
+                                    //var date = new Date(+sensorMessage.timestamp.toString());
+                                    //console.log(date, sensorMessage);
                                 } else {
                                     console.log(topic, payload);
                                 }
