@@ -22,6 +22,9 @@
 .flex-column {
     flex-direction: column;
 }
+.flex-row {
+    flex-direction: row;
+}
 .flex-grow-1 {
     flex-grow: 1;
 }
@@ -68,6 +71,31 @@ widget {
             padding: 0 16px;
             white-space: wrap;
             font-size: 2.99vh;
+        }
+
+        .switch-border {
+            display:flex;
+            flex-direction:row;
+            margin:auto;
+            align-self:center;
+            width: 25vh;
+            height: 25vh;
+            border: solid 10px #eee;
+            border-radius: 50%;
+        }
+        .switch-button {
+             margin:auto;
+             align-self:center;
+             width: 20vh;
+             height: 20vh;
+             border-radius: 50%;
+
+             &.on {
+                 background: green;
+             }
+             &.off {
+                 background: red;
+             }
         }
     }
     div.chart.number {
