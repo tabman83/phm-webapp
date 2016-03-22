@@ -47,6 +47,14 @@ angular.module('PhmWebApp').provider('DataService', function () {
 
             };
 
+            this.sendBoolean = function(location, value) {
+                if(mqttClient) {
+                    var topic = 'phm/actuators';
+                    mqttClient.publish(topic, 'H');
+                } else {
+                    console.error('MQTT client not initialized.');
+                }
+            };
 
             this.apiCall = function() {
             };

@@ -1,4 +1,4 @@
-angular.module('PhmWebApp').directive('widgetSwitch', function($timeout) {
+angular.module('PhmWebApp').directive('widgetSwitch', function($timeout, DataService) {
     'use strict';
 
     return {
@@ -34,6 +34,7 @@ angular.module('PhmWebApp').directive('widgetSwitch', function($timeout) {
                     timeoutHandle = $timeout(function() {
                         timeoutHandle = null;
                     }, 2000);
+                    DataService.sendBoolean(vm.location, vm.status);
                 }
             };
 
