@@ -50,7 +50,7 @@ angular.module('PhmWebApp').provider('DataService', function () {
             this.sendBoolean = function(location, value) {
                 if(mqttClient) {
                     var topic = 'phm/actuators';
-                    mqttClient.publish(topic, 'H');
+                    mqttClient.publish(topic, value ? 'ON': 'OFF');
                 } else {
                     console.error('MQTT client not initialized.');
                 }
