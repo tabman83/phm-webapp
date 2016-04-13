@@ -1,0 +1,13 @@
+<md-toolbar class="md-whiteframe-z1">
+	<div class="md-toolbar-tools">
+		<md-button class="md-icon-button" hide-gt-sm ng-click="app.toggleSidenav('left')" aria-label="Show or Hide menu" ng-if="!day.selectedCount">
+			<md-icon md-svg-src="images/menu.svg" aria-label="menu"></md-icon>
+		</md-button>
+		<h2>Boiler</h2>
+	</div>
+</md-toolbar>
+<md-content layout-padding>
+    <md-switch ng-model="vm.boilerSwitchStatus" ng-model-options="{ getterSetter: true }" aria-label="boiler status">
+        Boiler is {{vm.boilerStatus ? 'on' : 'off'}}
+    </md-switch>
+</md-content>

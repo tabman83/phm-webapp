@@ -1,33 +1,48 @@
-angular.module('PhmWebApp', ['ngMaterial', 'ngRoute', 'angularMoment', 'rt.debounce']).run(function(DataService) {
-}).config(function($routeProvider) {
+angular.module('PhmWebApp', ['ngMaterial', 'ui.router', 'angularMoment', 'LocalStorageModule', 'rt.debounce']).run(function() {
+
+}).config(function($locationProvider, $stateProvider, $urlRouterProvider, localStorageServiceProvider) {
 	'use strict';
 
-	$routeProvider.when('/Dashboard', {
+	localStorageServiceProvider.setPrefix('PhmWebApp');
+
+	$locationProvider.html5Mode({
+        enabled: true,
+        requireBase: false
+    });
+
+	$stateProvider.state('login', {
+        url: '/login?returnTo',
+        templateUrl: 'views/login.html',
+        controller: 'LoginController',
+        controllerAs: 'vm'
+    }).state('error', {
+        url: '/error?returnTo',
+        templateUrl: 'views/error.html',
+        controller: 'ErrorController',
+        controllerAs: 'vm'
+    }).state('app', {
+		abstract: true,
+        controller: 'AppController',
+        controllerAs: 'app',
+        templateUrl: 'views/app.html',
+		resolve: {
+			isConnected: ['dataService', function(dataService) {
+                return dataService.initialize();
+            }],
+		}
+	}).state('app.dashboard', {
+		url: '/dashboard',
 		templateUrl: 'views/dashboard.html',
-		controller: 'DashboardCtrl',
-		controllerAs: 'vmd'
-	}).when('/Sensors', {
-		templateUrl: 'views/sensors.html',
-		controller: 'SensorsCtrl',
-		controllerAs: 'vms'
-	}).when('/Actuators', {
-		templateUrl: 'views/actuators.html',
-		controller: 'ActuatorsCtrl',
-		controllerAs: 'vma'
-	}).when('/Scheduler', {
-		templateUrl: 'views/scheduler.html',
-		controller: 'SchedulerCtrl',
-		controllerAs: 'vmc'
-	}).when('/History', {
-		templateUrl: 'views/history.html',
-		controller: 'HistoryCtrl',
-		controllerAs: 'vmh'
-	}).when('/Settings', {
-		templateUrl: 'views/settings.html'
-	}).otherwise({
-		redirectTo: '/Dashboard'
+		controller: 'DashboardController',
+		controllerAs: 'vm'
+	}).state('app.boiler', {
+		url: '/boiler',
+		templateUrl: 'views/boiler.html',
+		controller: 'BoilerController',
+		controllerAs: 'vm'
 	});
 
+	$urlRouterProvider.otherwise('/dashboard');
 });
 
 angular.element(document).ready(function () {
@@ -43,17 +58,5 @@ angular.element(document).ready(function () {
 	req.addEventListener('load', reqListener);
 	req.open('GET', 'settings.json');
 	req.send();
-/*
-    window.jQuery.get('settings.json').success(function (data) {
-        angular.module('bis.app.mstrackweb2016').constant('settings', data);
-        angular.bootstrap(document, ['bis.app.mstrackweb2016']);
-    }).error(function(error) {
-        var msg = 'An error occurred while loading the configuration file. ';
-        if( error.status === 0 ) {
-            msg += 'Host is unreachable.';
-        } else {
-            msg += error.responseText;
-        }
-        console.error(msg);
-    });*/
+
 });

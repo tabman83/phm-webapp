@@ -4,6 +4,7 @@ import gulpLoadPlugins from 'gulp-load-plugins';
 import browserSync from 'browser-sync';
 import del from 'del';
 import {stream as wiredep} from 'wiredep';
+import modRewrite from 'connect-modrewrite';
 
 const $ = gulpLoadPlugins();
 const reload = browserSync.reload;
@@ -98,12 +99,17 @@ gulp.task('serve', ['styles', 'scripts', 'fonts'], () => {
       baseDir: ['.tmp', 'app'],
       routes: {
         '/bower_components': 'bower_components'
-      }
+      },
+      middleware: [
+          modRewrite([
+              '!\\.\\w+$ /index.html [L]'
+          ])
+      ]
     }
   });
 
   gulp.watch([
-    'app/*.html',
+    'app/**/*.html',
     'app/scripts/**/*',
     'app/images/**/*',
     '.tmp/fonts/**/*'
@@ -135,7 +141,12 @@ gulp.task('serve:test', ['scripts'], () => {
       routes: {
         '/scripts': '.tmp/scripts',
         '/bower_components': 'bower_components'
-      }
+      },
+      middleware: [
+          modRewrite([
+              '!\\.\\w+$ /index.html [L]'
+          ])
+      ]
     }
   });
 

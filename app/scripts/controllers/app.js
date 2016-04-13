@@ -1,4 +1,4 @@
-angular.module('PhmWebApp').controller('AppCtrl', function($mdSidenav, $location) {
+angular.module('PhmWebApp').controller('AppController', function($mdSidenav, $location, $rootScope, $scope) {
 	'use strict';
 
 	var vm = this;
@@ -7,9 +7,9 @@ angular.module('PhmWebApp').controller('AppCtrl', function($mdSidenav, $location
 		$mdSidenav(menuId).toggle();
 	};
 
-	vm.navigateAndToggleSidenav = function(location, menuId) {
-		$mdSidenav(menuId).toggle();
-		$location.path(location);
-	};
-
+	$rootScope.$on('actuator', function(event, value) {
+		$scope.$applyAsync(function() {
+			vm.boilerStatus = value;
+		});
+	});
 });
