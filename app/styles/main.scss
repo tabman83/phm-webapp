@@ -8,3 +8,20 @@
 .off {
     fill: #e74b3c;
 }
+md-content.boiler {
+    background: #efefef;
+    &::-webkit-scrollbar {
+        display: none;
+    }
+
+    md-fab-speed-dial {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+    }
+
+    md-list.md-whiteframe-2dp {
+        background: white;
+        margin: 20px 0px;
+    }
+}

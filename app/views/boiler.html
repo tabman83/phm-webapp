@@ -3,11 +3,38 @@
 		<md-button class="md-icon-button" hide-gt-sm ng-click="app.toggleSidenav('left')" aria-label="Show or Hide menu" ng-if="!day.selectedCount">
 			<md-icon md-svg-src="images/menu.svg" aria-label="menu"></md-icon>
 		</md-button>
-		<h2>Boiler</h2>
+		<h2>Boiler is {{app.boilerStatus ? 'ON' : 'OFF'}}</h2>
+		<span flex></span>
+		<md-switch ng-model="vm.boilerSwitchStatus" ng-model-options="{ getterSetter: true }" aria-label="boiler status"></md-switch>
 	</div>
 </md-toolbar>
-<md-content layout-padding>
-    <md-switch ng-model="vm.boilerSwitchStatus" ng-model-options="{ getterSetter: true }" aria-label="boiler status">
-        Boiler is {{vm.boilerStatus ? 'on' : 'off'}}
-    </md-switch>
+
+<md-content flex layout="row" layout-align="center start" class="boiler">
+
+	<md-list md-whiteframe="2" flex-sm="100" flex-gt-sm="80" flex-gt-md="50" flex-gt-lg="50"  >
+		<md-list-item class="md-2-line">
+    		<div class="md-list-item-text">
+      			<h3>Turn ON</h3>
+      			<p>Runs every Mon, Tue, Wed, Thu, Fri at 7.20 AM</p>
+    		</div>
+			<md-icon class="md-secondary" ng-click="" aria-label="remove" md-svg-src="images/remove.svg"></md-icon>
+		</md-list-item>
+		<md-divider></md-divider>
+		<md-list-item class="md-2-line">
+    		<div class="md-list-item-text">
+      			<h3>Turn OFF</h3>
+      			<p>Runs every Mon, Tue, Wed, Thu, Fri at 8.15 AM</p>
+    		</div>
+			<md-icon class="md-secondary" ng-click="" aria-label="remove" md-svg-src="images/remove.svg"></md-icon>
+		</md-list-item>
+	</md-list>
+
+	<md-fab-speed-dial>
+        <md-fab-trigger>
+            <md-button ng-disabled="app.isLoading" aria-label="menu" class="md-fab md-primary" ng-click="vm.createNewSchedule()">
+                <md-icon md-svg-src="images/add.svg"></md-icon>
+            </md-button>
+        </md-fab-trigger>
+    </md-fab-speed-dial>
+
 </md-content>
