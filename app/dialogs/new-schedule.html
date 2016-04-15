@@ -1,0 +1,45 @@
+<md-dialog aria-label="New schedule"  ng-cloak>
+    <form>
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>New schedule</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="vm.cancel()">
+                    <md-icon md-svg-src="images/remove.svg" aria-label="Close dialog"></md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-dialog-content style="min-width:800px">
+            <div class="md-dialog-content">
+                <p>Mode</p>
+                <md-radio-group ng-model="vm.mode" class="md-primary">
+                    <md-radio-button value="turnon">Turn ON</md-radio-button>
+                    <md-radio-button value="turnoff">Turn OFF</md-radio-button>
+                </md-radio-group>
+                <p>Recur</p>
+                <md-radio-group ng-model="vm.recur" class="md-primary">
+                    <md-radio-button value="onetime">One time</md-radio-button>
+                    <md-radio-button value="daily">Daily</md-radio-button>
+                    <md-radio-button value="weekly">Weekly</md-radio-button>
+                </md-radio-group>
+                <div ng-if="vm.recur === 'weekly'" class="md-primary">
+                    <p>Days</p>
+                    <md-checkbox ng-model="vm.weekly[0]" class="md-primary" aria-label="sunday">Sun</md-checkbox>
+                    <md-checkbox ng-model="vm.weekly[1]" class="md-primary" aria-label="monday">Mon</md-checkbox>
+                    <md-checkbox ng-model="vm.weekly[2]" class="md-primary" aria-label="tuesday">Tue</md-checkbox>
+                    <md-checkbox ng-model="vm.weekly[3]" class="md-primary" aria-label="wednesday">Wed</md-checkbox>
+                    <md-checkbox ng-model="vm.weekly[4]" class="md-primary" aria-label="thursday">Thu</md-checkbox>
+                    <md-checkbox ng-model="vm.weekly[5]" class="md-primary" aria-label="friday">Fri</md-checkbox>
+                    <md-checkbox ng-model="vm.weekly[6]" class="md-primary" aria-label="saturday">Sat</md-checkbox>
+                    <p>Time</p>
+                    <input ng-model="vm.time" type="time" style="border:none">
+                </div>
+           </div>
+        </md-dialog-content>
+        <md-dialog-actions layout="row">
+            <span flex></span>
+            <md-button ng-click="vm.cancel()">Cancel</md-button>
+            <md-button ng-click="vm.confirm()" md-autofocus>Ok</md-button>
+        </md-dialog-actions>
+    </form>
+</md-dialog>
