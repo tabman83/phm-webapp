@@ -11,21 +11,33 @@
 
 <md-content flex layout="row" layout-align="center start" class="boiler">
 
-	<md-list md-whiteframe="2" flex-sm="100" flex-gt-sm="80" flex-gt-md="50" flex-gt-lg="50"  >
+	<md-list md-whiteframe="2" flex-sm="100" flex-gt-sm="80" flex-gt-md="50" flex-gt-lg="50">
+
 		<md-list-item class="md-2-line">
     		<div class="md-list-item-text">
       			<h3>Turn ON</h3>
       			<p>Runs every Mon, Tue, Wed, Thu, Fri at 7.20 AM</p>
     		</div>
-			<md-icon class="md-secondary" ng-click="" aria-label="remove" md-svg-src="images/remove.svg"></md-icon>
+			<md-icon class="md-secondary" ng-click="vm.enable()" aria-label="enable" md-svg-src="images/pause.svg"></md-icon>
+			<md-icon class="md-secondary" ng-click="vm.remove()" aria-label="remove" md-svg-src="images/remove.svg"></md-icon>
 		</md-list-item>
 		<md-divider></md-divider>
 		<md-list-item class="md-2-line">
-    		<div class="md-list-item-text">
+			<div class="md-list-item-text">
       			<h3>Turn OFF</h3>
       			<p>Runs every Mon, Tue, Wed, Thu, Fri at 8.15 AM</p>
     		</div>
-			<md-icon class="md-secondary" ng-click="" aria-label="remove" md-svg-src="images/remove.svg"></md-icon>
+			<md-icon class="md-secondary" md-svg-src="images/pause.svg" ng-click="" aria-label="disable"></md-icon>
+			<md-icon class="md-secondary" md-svg-src="images/remove.svg" ng-click="" aria-label="remove"></md-icon>
+		</md-list-item>
+		<md-divider></md-divider>
+		<md-list-item class="md-2-line">
+			<div class="md-list-item-text">
+      			<h3>Turn OFF</h3>
+      			<p>Runs every Mon, Tue, Wed, Thu, Fri at 8.15 AM</p>
+    		</div>
+			<md-icon class="md-secondary md-warn" md-svg-src="images/play.svg" ng-click="" aria-label="disable"></md-icon>
+			<md-icon class="md-secondary" md-svg-src="images/remove.svg" ng-click="" aria-label="remove"></md-icon>
 		</md-list-item>
 	</md-list>
 

@@ -17,7 +17,9 @@ angular.module('PhmWebApp').controller('BoilerController', function($mdMedia, $m
             parent: angular.element(document.body),
             clickOutsideToClose: true,
             fullscreen: useFullScreen,
-        });
+        }).then(function(result) {
+			console.log(result);
+		});
 	};
 
 	vm.boilerSwitchStatus = function() {

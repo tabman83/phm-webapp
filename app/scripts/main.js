@@ -1,4 +1,4 @@
-angular.module('PhmWebApp', ['ngMaterial', 'ui.router', 'angularMoment', 'LocalStorageModule', 'rt.debounce', 'mdPickers']).run(function() {
+angular.module('PhmWebApp', ['ngMaterial', 'ui.router', 'angularMoment', 'LocalStorageModule', 'rt.debounce']).run(function() {
 
 }).config(function($locationProvider, $stateProvider, $urlRouterProvider, localStorageServiceProvider) {
 	'use strict';

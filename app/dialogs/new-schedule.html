@@ -22,17 +22,25 @@
                     <md-radio-button value="daily">Daily</md-radio-button>
                     <md-radio-button value="weekly">Weekly</md-radio-button>
                 </md-radio-group>
-                <div ng-if="vm.recur === 'weekly'" class="md-primary">
-                    <p>Days</p>
-                    <md-checkbox ng-model="vm.weekly[0]" class="md-primary" aria-label="sunday">Sun</md-checkbox>
-                    <md-checkbox ng-model="vm.weekly[1]" class="md-primary" aria-label="monday">Mon</md-checkbox>
-                    <md-checkbox ng-model="vm.weekly[2]" class="md-primary" aria-label="tuesday">Tue</md-checkbox>
-                    <md-checkbox ng-model="vm.weekly[3]" class="md-primary" aria-label="wednesday">Wed</md-checkbox>
-                    <md-checkbox ng-model="vm.weekly[4]" class="md-primary" aria-label="thursday">Thu</md-checkbox>
-                    <md-checkbox ng-model="vm.weekly[5]" class="md-primary" aria-label="friday">Fri</md-checkbox>
-                    <md-checkbox ng-model="vm.weekly[6]" class="md-primary" aria-label="saturday">Sat</md-checkbox>
-                    <p>Time</p>
-                    <input ng-model="vm.time" type="time" style="border:none">
+                <div layout="row">
+                    <div>
+                        <p>Time</p>
+                        <input ng-model="vm.datetime" type="time" style="border:none">
+                    </div>
+                    <div ng-if="vm.recur === 'onetime'">
+                        <p>Date</p>
+                        <input ng-model="vm.datetime" type="date" style="border:none">
+                    </div>
+                    <div ng-if="vm.recur === 'weekly'">
+                        <p>Days</p>
+                        <md-checkbox ng-model="vm.weekdays[0]" class="md-primary" aria-label="sunday">Sun</md-checkbox>
+                        <md-checkbox ng-model="vm.weekdays[1]" class="md-primary" aria-label="monday">Mon</md-checkbox>
+                        <md-checkbox ng-model="vm.weekdays[2]" class="md-primary" aria-label="tuesday">Tue</md-checkbox>
+                        <md-checkbox ng-model="vm.weekdays[3]" class="md-primary" aria-label="wednesday">Wed</md-checkbox>
+                        <md-checkbox ng-model="vm.weekdays[4]" class="md-primary" aria-label="thursday">Thu</md-checkbox>
+                        <md-checkbox ng-model="vm.weekdays[5]" class="md-primary" aria-label="friday">Fri</md-checkbox>
+                        <md-checkbox ng-model="vm.weekdays[6]" class="md-primary" aria-label="saturday">Sat</md-checkbox>
+                    </div>
                 </div>
            </div>
         </md-dialog-content>
