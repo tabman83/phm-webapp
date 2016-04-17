@@ -40,6 +40,11 @@ angular.module('PhmWebApp', ['ngMaterial', 'ui.router', 'angularMoment', 'LocalS
 		templateUrl: 'views/boiler.html',
 		controller: 'BoilerController',
 		controllerAs: 'vm'
+	}).state('app.settings', {
+		url: '/boiler',
+		templateUrl: 'views/settings.html',
+		controller: 'SettingsController',
+		controllerAs: 'vm'
 	});
 
 	$urlRouterProvider.otherwise('/dashboard');

@@ -37,6 +37,28 @@ angular.module('PhmWebApp').controller('BoilerController', function($mdMedia, $m
 		}
 	};
 
+	vm.enableSchedule = function(event) {
+	};
+
+	vm.disableSchedule = function(event) {
+	};
+
+	vm.deleteSchedule = function(event) {
+	    // Appending dialog to document.body to cover sidenav in docs app
+		var confirmDeleteDialog = $mdDialog.confirm()
+			.title('Would you like to delete this schedule?')
+			.textContent('You won\'t be able to undo this operation.')
+			.parent(angular.element(document.body))
+        	.clickOutsideToClose(false)
+			.ariaLabel('Delete schedule')
+			.targetEvent(event)
+			.ok('Ok')
+			.cancel('Cancel');
+	    $mdDialog.show(confirmDeleteDialog).then(function() {
+	      	console.log('delete');
+	    });
+	};
+
 	$rootScope.$on('actuator', function(event, value) {
 		boilerStatus = value;
 		enabled = false;

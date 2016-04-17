@@ -18,8 +18,8 @@
       			<h3>Turn ON</h3>
       			<p>Runs every Mon, Tue, Wed, Thu, Fri at 7.20 AM</p>
     		</div>
-			<md-icon class="md-secondary" ng-click="vm.enable()" aria-label="enable" md-svg-src="images/pause.svg"></md-icon>
-			<md-icon class="md-secondary" ng-click="vm.remove()" aria-label="remove" md-svg-src="images/remove.svg"></md-icon>
+			<md-icon class="md-secondary" ng-click="vm.enableSchedule($event)" aria-label="enable" md-svg-src="images/pause.svg"></md-icon>
+			<md-icon class="md-secondary" ng-click="vm.deleteSchedule($event)" aria-label="remove" md-svg-src="images/remove.svg"></md-icon>
 		</md-list-item>
 		<md-divider></md-divider>
 		<md-list-item class="md-2-line">
@@ -27,8 +27,8 @@
       			<h3>Turn OFF</h3>
       			<p>Runs every Mon, Tue, Wed, Thu, Fri at 8.15 AM</p>
     		</div>
-			<md-icon class="md-secondary" md-svg-src="images/pause.svg" ng-click="" aria-label="disable"></md-icon>
-			<md-icon class="md-secondary" md-svg-src="images/remove.svg" ng-click="" aria-label="remove"></md-icon>
+			<md-icon class="md-secondary" md-svg-src="images/pause.svg" ng-click="vm.disableSchedule($event)" aria-label="disable"></md-icon>
+			<md-icon class="md-secondary" md-svg-src="images/remove.svg" ng-click="vm.deleteSchedule($event)" aria-label="remove"></md-icon>
 		</md-list-item>
 		<md-divider></md-divider>
 		<md-list-item class="md-2-line">
@@ -36,8 +36,8 @@
       			<h3>Turn OFF</h3>
       			<p>Runs every Mon, Tue, Wed, Thu, Fri at 8.15 AM</p>
     		</div>
-			<md-icon class="md-secondary md-warn" md-svg-src="images/play.svg" ng-click="" aria-label="disable"></md-icon>
-			<md-icon class="md-secondary" md-svg-src="images/remove.svg" ng-click="" aria-label="remove"></md-icon>
+			<md-icon class="md-secondary" md-svg-src="images/play.svg" ng-click="vm.enableSchedule($event)" aria-label="disable"></md-icon>
+			<md-icon class="md-secondary" md-svg-src="images/remove.svg" ng-click="vm.deleteSchedule($event)" aria-label="remove"></md-icon>
 		</md-list-item>
 	</md-list>
 
