@@ -20,7 +20,7 @@ angular.module('PhmWebApp').controller('NewScheduleDialogController', function($
 		crontabExpression.push();
 
 		if(vm.recur === 'onetime') {
-			crontabExpression.push(vm.datetime.getDate(), vm.datetime.getMonth() + 1);
+			crontabExpression.push(vm.datetime.getDate(), vm.datetime.getMonth());
 		} else {
 			crontabExpression.push('*', '*');
 		}
