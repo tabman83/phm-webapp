@@ -14,7 +14,7 @@ angular.module('PhmWebApp').controller('NewScheduleDialogController', function($
 	};
 
 	vm.confirm = function() {
-		var crontabExpression = [];
+		var crontabExpression = ['0'];
 
 		crontabExpression.push(vm.datetime.getMinutes(), vm.datetime.getHours());
 		crontabExpression.push();
@@ -43,7 +43,7 @@ angular.module('PhmWebApp').controller('NewScheduleDialogController', function($
 
     	$mdDialog.hide({
 			mode: vm.mode,
-			expr: crontabExpression.join(' ')
+			cronTime: crontabExpression.join(' ')
 		});
   	};
 
