@@ -9,7 +9,11 @@
     "protobuf": "^5.0.1",
     "angular-moment": "^0.10.3",
     "angular-local-storage": "^0.2.7",
-    "angular-ui-router": "^0.2.18"
+    "angular-ui-router": "^0.2.18",
+    "angular-resource": "^1.5.5",
+    "later": "^1.2.0",
+    "prettycron": "https://github.com/tabman83/prettycron.git#master",
+    "moment-timezone": "^0.5.3"
   },
   "devDependencies": {
     "chai": "^3.5.0",

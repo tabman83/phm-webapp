@@ -1,10 +1,13 @@
-angular.module('PhmWebApp').controller('BoilerController', function($mdMedia, $mdDialog, $scope, $rootScope, dataService) {
+angular.module('PhmWebApp').controller('BoilerController', function($mdMedia, $mdDialog, $scope, $rootScope, schedules, Schedule, dataService) {
 	'use strict';
 
 	var vm = this;
 	var boilerStatus = false;
 	var enabled = true;
 	var timeoutHandle = null;
+	var timezone = moment.tz.guess();
+
+	vm.schedules = schedules;
 
 	vm.createNewSchedule = function(event) {
 		var useFullScreen = ($mdMedia('sm') || $mdMedia('xs')) && $scope.app.customFullscreen;
@@ -17,8 +20,16 @@ angular.module('PhmWebApp').controller('BoilerController', function($mdMedia, $m
             parent: angular.element(document.body),
             clickOutsideToClose: true,
             fullscreen: useFullScreen,
+			locals: {
+				timezone: timezone
+			}
         }).then(function(result) {
-			console.log(result);
+			$scope.app.isLoading = true;
+			return Schedule.save(result).$promise.then(function(savedSchedule) {
+				vm.schedules.push(savedSchedule)
+			});
+		}).finally(function() {
+			$scope.app.isLoading = false;
 		});
 	};
 
@@ -43,7 +54,7 @@ angular.module('PhmWebApp').controller('BoilerController', function($mdMedia, $m
 	vm.disableSchedule = function(event) {
 	};
 
-	vm.deleteSchedule = function(event) {
+	vm.deleteSchedule = function(schedule, event) {
 	    // Appending dialog to document.body to cover sidenav in docs app
 		var confirmDeleteDialog = $mdDialog.confirm()
 			.title('Would you like to delete this schedule?')
@@ -55,7 +66,17 @@ angular.module('PhmWebApp').controller('BoilerController', function($mdMedia, $m
 			.ok('Ok')
 			.cancel('Cancel');
 	    $mdDialog.show(confirmDeleteDialog).then(function() {
-	      	console.log('delete');
+			$scope.app.isLoading = true;
+	      	return Schedule.remove({ id: schedule._id }).$promise.then(function(deletedSchedule) {
+				for (var i = 0; i < vm.schedules.length; i++) {
+   					if(vm.schedules[i]._id === deletedSchedule._id) {
+      					vm.schedules.splice(i, 1);
+      					break;
+   					}
+				}
+			}).finally(function() {
+				$scope.app.isLoading = false;
+			});
 	    });
 	};
 

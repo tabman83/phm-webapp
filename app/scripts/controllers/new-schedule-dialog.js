@@ -1,7 +1,8 @@
-angular.module('PhmWebApp').controller('NewScheduleDialogController', function($mdDialog, $scope) {
+angular.module('PhmWebApp').controller('NewScheduleDialogController', function($mdDialog, $scope, timezone) {
 	'use strict';
 
 	var vm = this;
+	var months = ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec'];
 
 	vm.datetime = new Date();
 	vm.datetime.setSeconds(0, 0);
@@ -20,14 +21,14 @@ angular.module('PhmWebApp').controller('NewScheduleDialogController', function($
 		crontabExpression.push();
 
 		if(vm.recur === 'onetime') {
-			crontabExpression.push(vm.datetime.getDate(), vm.datetime.getMonth());
+			crontabExpression.push(vm.datetime.getDate(), months[vm.datetime.getMonth()]);
 		} else {
 			crontabExpression.push('*', '*');
 		}
 
 		if(vm.recur === 'weekly') {
 			var weekdays = [];
-			for(var i = 0; i < 6; i++) {
+			for(var i = 0; i < 7; i++) {
 				if(vm.weekdays[i] === true) {
 					weekdays.push(i);
 				}
@@ -43,7 +44,8 @@ angular.module('PhmWebApp').controller('NewScheduleDialogController', function($
 
     	$mdDialog.hide({
 			mode: vm.mode,
-			cronTime: crontabExpression.join(' ')
+			cronTime: crontabExpression.join(' '),
+			timezone: timezone
 		});
   	};
 

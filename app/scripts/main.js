@@ -1,4 +1,4 @@
-angular.module('PhmWebApp', ['ngMaterial', 'ui.router', 'angularMoment', 'LocalStorageModule', 'rt.debounce']).run(function() {
+angular.module('PhmWebApp', ['ngMaterial', 'ui.router', 'angularMoment', 'LocalStorageModule', 'ngResource', 'rt.debounce']).run(function() {
 
 }).config(function($locationProvider, $stateProvider, $urlRouterProvider, localStorageServiceProvider) {
 	'use strict';
@@ -39,7 +39,12 @@ angular.module('PhmWebApp', ['ngMaterial', 'ui.router', 'angularMoment', 'LocalS
 		url: '/boiler',
 		templateUrl: 'views/boiler.html',
 		controller: 'BoilerController',
-		controllerAs: 'vm'
+		controllerAs: 'vm',
+		resolve: {
+    		schedules: ['Schedule', function(Schedule) {
+      			return Schedule.query().$promise;
+    		}]
+  		}
 	}).state('app.settings', {
 		url: '/boiler',
 		templateUrl: 'views/settings.html',

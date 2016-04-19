@@ -63,6 +63,10 @@
         <script src="/bower_components/angular-moment/angular-moment.js"></script>
         <script src="/bower_components/angular-local-storage/dist/angular-local-storage.js"></script>
         <script src="/bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+        <script src="/bower_components/angular-resource/angular-resource.js"></script>
+        <script src="/bower_components/later/later.js"></script>
+        <script src="/bower_components/prettycron/prettycron.js"></script>
+        <script src="/bower_components/moment-timezone/builds/moment-timezone-with-data-2010-2020.js"></script>
         <!-- endbower -->
         <!-- endbuild -->
 
@@ -75,7 +79,10 @@
         <script src="scripts/controllers/settings.js"></script>
         <script src="scripts/controllers/boiler.js"></script>
         <script src="scripts/controllers/new-schedule-dialog.js"></script>
+        <script src="scripts/services/schedule.js"></script>
         <script src="scripts/services/data-service.js"></script>
+        <script src="scripts/filters/parse-cron.js"></script>
+        <script src="scripts/filters/parse-cron-next.js"></script>
 
         <!--
         <script src="scripts/providers/data-service.js"></script>
