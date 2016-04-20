@@ -15,13 +15,16 @@
 		<md-list-item class="md-2-line" ng-repeat="schedule in vm.schedules track by schedule._id" title="{{schedule.cronTime}}">
     		<div class="md-list-item-text">
 				<h3>Turn {{schedule.mode === 'turnon' ? 'ON' : 'OFF'}} {{schedule.cronTime | parseCron}}</h3>
-				<p>Next run {{schedule.cronTime | parseCronNext}}</p>
+				<p ng-if="!schedule.paused">Next run {{schedule.cronTime | parseCronNext}}</p>
+				<p ng-if="schedule.paused" md-colors="{color: 'warn'}" >Disabled</p>
     		</div>
-			<md-icon class="md-secondary" ng-click="vm.enableSchedule($event)" aria-label="enable" md-svg-src="images/pause.svg"></md-icon>
+			<md-icon ng-if="!schedule.paused" class="md-secondary" ng-click="vm.disableSchedule($event)" aria-label="disable" md-svg-src="images/pause.svg"></md-icon>
+			<md-icon ng-if="schedule.paused" class="md-secondary" ng-click="vm.enableSchedule($event)" aria-label="enable" md-svg-src="images/play.svg"></md-icon>
 			<md-icon class="md-secondary" ng-click="vm.deleteSchedule(schedule, $event)" aria-label="remove" md-svg-src="images/remove.svg"></md-icon>
 			<md-divider ng-if="!$last"></md-divider>
 		</md-list-item>
 	</md-list>
+
 
 	<md-fab-speed-dial>
         <md-fab-trigger>
