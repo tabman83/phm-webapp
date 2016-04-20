@@ -48,10 +48,24 @@ angular.module('PhmWebApp').controller('BoilerController', function($mdMedia, $m
 		}
 	};
 
-	vm.enableSchedule = function(event) {
+	vm.enableSchedule = function(schedule, event) {
+		$scope.app.isLoading = true;
+		schedule.paused = false;
+		schedule.$update().catch(function() {
+			schedule.paused = true;
+		}).finally(function() {
+			$scope.app.isLoading = false;
+		});
 	};
 
-	vm.disableSchedule = function(event) {
+	vm.disableSchedule = function(schedule, event) {
+		$scope.app.isLoading = true;
+		schedule.paused = true;
+		schedule.$update().catch(function() {
+			schedule.paused = false;
+		}).finally(function() {
+			$scope.app.isLoading = false;
+		});
 	};
 
 	vm.deleteSchedule = function(schedule, event) {
