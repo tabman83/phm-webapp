@@ -9,7 +9,6 @@
     fill: #e74b3c;
 }
 md-content.boiler {
-    background: #efefef;
     &::-webkit-scrollbar {
         display: none;
     }
@@ -22,7 +21,7 @@ md-content.boiler {
 
     md-list.md-whiteframe-2dp {
         background: white;
-        margin: 20px 0px;
+        //margin: 20px 0px;
     }
 }
 md-list-item.paused {

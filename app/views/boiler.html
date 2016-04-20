@@ -11,16 +11,23 @@
 <md-progress-linear md-mode="indeterminate" ng-if="app.isLoading"></md-progress-linear>
 <md-content flex layout="row" layout-align="center start" class="boiler">
 
-	<md-list md-whiteframe="2" flex-sm="100" flex-gt-sm="80" flex-gt-md="50" flex-gt-lg="50">
+	<md-list md-whiteframe="2" flex="100" flex-gt-sm="80" flex-gt-md="50" flex-gt-lg="50">
+		<md-subheader class="md-primary">Schedules</md-subheader>
+		<md-list-item class="md-2-line" ng-if="!vm.schedules.length">
+			<div class="md-list-item-text">
+				<h3>No schedules</h3>
+				<p>Use the + button on the bottom right to create a new schedule</p>
+    		</div>
+		</md-list-item>
 		<md-list-item class="md-2-line" ng-repeat="schedule in vm.schedules track by schedule._id" title="{{schedule.cronTime}}">
     		<div class="md-list-item-text">
 				<h3>Turn {{schedule.mode === 'turnon' ? 'ON' : 'OFF'}} {{schedule.cronTime | parseCron}}</h3>
 				<p ng-if="!schedule.paused">Next run {{schedule.cronTime | parseCronNext}}</p>
 				<p ng-if="schedule.paused" md-colors="{color: 'warn'}" >Disabled</p>
     		</div>
-			<md-icon ng-if="schedule.paused" class="md-secondary" ng-disabled="app.isLoading" ng-click="vm.editSchedule(schedule, $event)" aria-label="edit" md-svg-src="images/edit.svg"></md-icon>
 			<md-icon ng-if="!schedule.paused" class="md-secondary" ng-disabled="app.isLoading" ng-click="vm.disableSchedule(schedule, $event)" aria-label="disable" md-svg-src="images/pause.svg"></md-icon>
 			<md-icon ng-if="schedule.paused" class="md-secondary" ng-disabled="app.isLoading" ng-click="vm.enableSchedule(schedule, $event)" aria-label="enable" md-svg-src="images/play.svg"></md-icon>
+			<md-icon class="md-secondary" ng-disabled="app.isLoading" ng-click="vm.editSchedule(schedule, $event)" aria-label="edit" md-svg-src="images/edit.svg"></md-icon>
 			<md-icon class="md-secondary" ng-disabled="app.isLoading" ng-click="vm.deleteSchedule(schedule, $event)" aria-label="remove" md-svg-src="images/remove.svg"></md-icon>
 			<md-divider ng-if="!$last"></md-divider>
 		</md-list-item>
