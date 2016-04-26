@@ -29,6 +29,9 @@ angular.module('PhmWebApp', ['ngMaterial', 'ui.router', 'angularMoment', 'LocalS
 			isConnected: ['dataService', function(dataService) {
                 return dataService.initialize();
             }],
+			schedules: ['Schedule', function(Schedule) {
+      			return Schedule.query().$promise;
+    		}]
 		}
 	}).state('app.dashboard', {
 		url: '/dashboard',
@@ -39,12 +42,7 @@ angular.module('PhmWebApp', ['ngMaterial', 'ui.router', 'angularMoment', 'LocalS
 		url: '/boiler',
 		templateUrl: 'views/boiler.html',
 		controller: 'BoilerController',
-		controllerAs: 'vm',
-		resolve: {
-    		schedules: ['Schedule', function(Schedule) {
-      			return Schedule.query().$promise;
-    		}]
-  		}
+		controllerAs: 'vm'
 	}).state('app.settings', {
 		url: '/boiler',
 		templateUrl: 'views/settings.html',

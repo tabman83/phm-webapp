@@ -27,3 +27,13 @@ md-content.boiler {
 md-list-item.paused {
     background: #fafafa;
 }
+.menu-active {
+    /*
+    .md-button.md-default-theme:not([disabled]), .md-button:not([disabled]) {
+        background-color: rgba(158,158,158,0.2);
+    }*/
+    p, md-icon {
+        color: rgb(63,81,181);
+        font-weight: bold;
+    }
+}

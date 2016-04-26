@@ -9,6 +9,10 @@ angular.module('PhmWebApp').controller('AppController', function($mdMedia, $mdSi
 		$mdSidenav(menuId).toggle();
 	};
 
+	vm.closeSidenav = function(menuId) {
+		$mdSidenav(menuId).toggle();
+	};
+
 	$scope.$watch(function() {
       	return $mdMedia('xs') || $mdMedia('sm');
     }, function(wantsFullScreen) {

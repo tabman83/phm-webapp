@@ -9,16 +9,16 @@
     </md-toolbar>
 
     <md-list>
-        <md-list-item md-ink-ripple ui-sref="app.dashboard">
+        <md-list-item md-ink-ripple ui-sref="app.dashboard" ui-sref-active="menu-active" ng-click="app.closeSidenav('left')">
             <md-icon md-svg-src="images/dashboard.svg" aria-label="dashboard"></md-icon>
             <p flex>Dashboard</p>
         </md-list-item>
-        <md-list-item md-ink-ripple ui-sref="app.boiler">
+        <md-list-item md-ink-ripple ui-sref="app.boiler" ui-sref-active="menu-active" ng-click="app.closeSidenav('left')">
             <md-icon md-svg-src="images/fire.svg" aria-label="boiler"></md-icon>
             <p flex>Boiler</p>
             <md-icon md-svg-src="images/dot.svg" ng-class="{ 'on': app.boilerStatus, 'off': !app.boilerStatus }" aria-label="dashboard"></md-icon>
         </md-list-item>
-        <md-list-item md-ink-ripple ui-sref="app.settings">
+        <md-list-item md-ink-ripple ui-sref="app.settings" ui-sref-active="menu-active" ng-click="app.closeSidenav('left')">
             <md-icon md-svg-src="images/settings.svg" aria-label="settings"></md-icon>
             <p flex>Settings</p>
         </md-list-item>
